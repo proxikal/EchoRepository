@@ -155,15 +155,14 @@ func Print(str interface{}) {
 
 
 func OpenURL(url string) {
-
-switch runtime.GOOS {
-case "linux":
-    err = exec.Command("xdg-open", url).Start()
-case "windows", "darwin":
-    err = exec.Command("rundll32", "url.dll,FileProtocolHandler", url).Start()
-default:
-    err = fmt.Errorf("can't open url. unsupported platform.")
-}
+	switch runtime.GOOS {
+		case "linux":
+   			err = exec.Command("xdg-open", url).Start()
+		case "windows", "darwin":
+   			err = exec.Command("rundll32", "url.dll,FileProtocolHandler", url).Start()
+		default:
+    	err = fmt.Errorf("can't open url. unsupported platform.")
+	}
 
 }
 
@@ -171,27 +170,28 @@ default:
 
 
 func DownloadFile(output string, url string) bool {
-chk := true
-os.Remove(output)
-out, err := os.Create(output)
-if err != nil {
-	chk = false
-// fmt.Println(err)
+	chk := true
+	os.Remove(output)
+	out, err := os.Create(output)
+	if err != nil {
+		chk = false
+	// fmt.Println(err)
+	}
+	defer out.Close()
+	resp, err := http.Get(url)
+	if err != nil {
+		chk = false
+	// fmt.Println(err)
+	}
+	defer resp.Body.Close()
+	_, err = io.Copy(out, resp.Body)
+	if err != nil {
+		chk = false
+	// fmt.Println(err)
+	}
+	return chk
 }
-defer out.Close()
-resp, err := http.Get(url)
-if err != nil {
-	chk = false
-// fmt.Println(err)
-}
-defer resp.Body.Close()
-_, err = io.Copy(out, resp.Body)
-if err != nil {
-	chk = false
-// fmt.Println(err)
-}
- return chk
-}
+
 
 
 
@@ -203,7 +203,6 @@ func getJson(url string, target interface{}) error {
         return err
     }
     defer r.Body.Close()
-
     return json.NewDecoder(r.Body).Decode(target)
 }
 
@@ -211,70 +210,23 @@ func getJson(url string, target interface{}) error {
 
 
 
-
-func readJson(path string, key string) (interface{}, error) {
-//	var newval map[string]interface{}
-	var rjson map[string]interface{}
-
-	// ################## COMMANDS.JSON UPDATE ########################
-	file, err := ioutil.ReadFile(path)
-	if err != nil {
-	//	fmt.Println("gotools error =>")
-	//	fmt.Println(err)
-		return "", err
-	} else {
-		json.Unmarshal(file, &rjson)
-	//	for k1, v1 := range rjson {
-		if _, ok := rjson[key]; ok {
-			/*
-			switch rjson[key].(type) {
-				case int:
-					return rjson[key].(int), nil
-				case string:
-					return rjson[key].(string), nil
-				case float64:
-					newval = rjson[key].(float64)
-				case int32:
-					newval = rjson[key].(int32)
-				case int64:
-					newval = rjson[key].(int64)
-				}
-				*/
-
-		return rjson[key].(interface{}), nil
-		//	 	newval = v1.(type)
-		}
-	//	} // end of oldcommand for loop
-	} // check if error is nil
-	return nil, err
+func Unmarshal(data []byte, target interface{}) error {
+	return json.Unmarshal(data, &target)
 }
 
 
 
-func writeJson(path string, key string, val string) error {
-//	newval := ""
-	var rjson map[string]interface{}
 
-	// ################## COMMANDS.JSON UPDATE ########################
-	file, err := ioutil.ReadFile(path)
+
+func Marshal(target interface{}) ([]byte, error) {
+	jso, err := json.MarshalIndent(target, "", "   ")
 	if err != nil {
-	//	fmt.Println("gotools error =>")
-	//	fmt.Println(err)
-		return err
-	} else {
-		json.Unmarshal(file, &rjson)
-		rjson[key] = val
-	b, err := json.MarshalIndent(rjson, "", "   ")
-	if err == nil {
-		ioutil.WriteFile(path, b, 0777)
-		// it works
-	}	else {
-		return err
+		return nil, err
 	}
-
-	} // check if error is nil
-return err
+return jso, nil
 }
+
+
 
 
 
@@ -289,7 +241,7 @@ func WriteFile(path string, b []byte, perm os.FileMode) {
 	ioutil.WriteFile(path, b, perm)
 }
 
-func random(min, max int) int {
+func Random(min, max int) int {
     rand.Seed(time.Now().Unix())
     return rand.Intn(max - min) + min
 }
@@ -457,14 +409,9 @@ func ServerID(s *discordgo.Session, m *discordgo.MessageCreate) (string, error) 
 
 
 
-/*
-type Info struct {
-	Servers		int
-	Roles 		int
-	Channels 	int
-	Members 	int
-}
-*/
+
+
+
 
 
 

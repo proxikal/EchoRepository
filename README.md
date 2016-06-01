@@ -2,9 +2,19 @@
 Just a personal module I use for most of my DiscordGo bots.
   
 ### Main Purpose to Gotools
-Basically i created this module to localized everything into one system.  
+Basically i created this module to localize everything into one system.  
   
 More documentation soon.
+  
+  
+## Discord Functions
+  
+You can view the example bot written using **DiscordGo** Beside the **Gotools** Module.
+  
+  
+## Packages and Functions included
+  
+
 
 ### gto.Replace()
 
@@ -230,7 +240,7 @@ func main() {
 ```
   
 
-### gto.getJson()
+### gto.GetJson()
 ```go
 package main
 import (
@@ -336,7 +346,7 @@ func main() {
 ```
   
   
-### gto.readLines()
+### gto.ReadLines()
 ```go
 package main
 import (
@@ -352,7 +362,7 @@ func main() {
 ```
   
 
-### gto.countLines()
+### gto.CountLines()
 ```go
 package main
 import (

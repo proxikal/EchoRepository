@@ -1,0 +1,10 @@
+{
+	"Token":					"BOT-TOKEN-HERE",
+	"Servers":					0,
+	"OwnerID":					"YOUR-ID-HERE",
+	"TwitterConsumerKey":		"",
+	"TwitterConsumerSecret":	"",
+	"TwitterToken":				"",
+	"TwitterTokenSecret":		"",
+	"RiotKey":					""
+}

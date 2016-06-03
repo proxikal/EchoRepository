@@ -21,7 +21,7 @@ import (
 	//"log"
 	"encoding/base64"
 	"encoding/binary"
-
+	"unicode"
 
 	"github.com/TrevorSStone/goriot"
 	"github.com/bwmarrin/discordgo"
@@ -54,6 +54,37 @@ import (
 		Take 	string
 		Color 	string
 	}
+
+
+
+
+
+type Time struct {
+	sec int64
+	nsec int32
+}
+
+
+type Duration int64
+
+const (
+	minDuration Duration = -1 << 63
+	maxDuration Duration = 1<<63 - 1
+)
+
+const (
+   Nanosecond  Duration = 1
+   Microsecond          = 1000 * Nanosecond
+   Millisecond          = 1000 * Microsecond
+   Second               = 1000 * Millisecond
+   Minute               = 60 * Second
+   Hour                 = 60 * Minute
+)
+
+
+
+
+
 
 
 	var Command Set // set's the command names for Gotools Discord System.
@@ -227,6 +258,12 @@ func CleanFileName(path string, ext string, opts []string) error {
 
 
 
+func Rename(oldpath, newpath string) error {
+	return os.Rename(oldpath, newpath)
+}
+
+
+
 
 
 func CleanPath(path string) string {
@@ -253,7 +290,7 @@ func CleanPath(path string) string {
 
 
 
-
+/*
 func Replace(str string, from string, to string, limit int) string {
 	return strings.Replace(str, from, to, limit)
 }
@@ -293,6 +330,412 @@ func HasPrefix(str string, prefix string) bool {
 func HasSuffix(str string, suffix string) bool {
 	return strings.HasPrefix(str, suffix)
 }
+*/
+
+
+type Reader struct {
+        // contains filtered or unexported fields
+}
+
+// func (r *Reader) Len() int { return len(r) }
+
+
+
+func Compare(a, b string) int {
+	return strings.Compare(a, b)
+}
+
+
+func Contains(s, substr string) bool {
+	return strings.Contains(s, substr)
+}
+
+
+func ContainsAny(s, chars string) bool {
+	return strings.ContainsAny(s, chars)
+}
+
+
+func ContainsRune(s string, r rune) bool {
+	return strings.ContainsRune(s, r)
+}
+
+
+func Count(s, sep string) int {
+	return strings.Count(s, sep)
+}
+
+
+func EqualFold(s, t string) bool {
+	return strings.EqualFold(s, t)
+}
+
+
+func Fields(s string) []string {
+	return strings.Fields(s)
+}
+
+
+func FieldsFunc(s string, f func(rune) bool) []string {
+	return strings.FieldsFunc(s, f)
+}
+
+
+func HasPrefix(s, prefix string) bool {
+	return strings.HasPrefix(s, prefix)
+}
+
+
+func HasSuffix(s, suffix string) bool {
+	return strings.HasSuffix(s, suffix)
+}
+
+
+func Index(s, sep string) int {
+	return strings.Index(s, sep)
+}
+
+
+func IndexAny(s, chars string) int {
+	return strings.IndexAny(s, chars)
+}
+
+
+func IndexByte(s string, c byte) int {
+	return strings.IndexByte(s, c)
+}
+
+
+func IndexFunc(s string, f func(rune) bool) int {
+	return strings.IndexFunc(s, f)
+}
+
+
+func IndexRune(s string, r rune) int {
+	return strings.IndexRune(s, r)
+}
+
+
+func Join(a []string, sep string) string {
+	return strings.Join(a, sep)
+}
+
+
+func LastIndex(s, sep string) int {
+	return strings.LastIndex(s, sep)
+}
+
+
+func LastIndexAny(s, chars string) int {
+	return strings.LastIndexAny(s, chars)
+}
+
+
+func LastIndexByte(s string, c byte) int {
+	return strings.LastIndexByte(s, c)
+}
+
+
+func LastIndexFunc(s string, f func(rune) bool) int {
+	return strings.LastIndexFunc(s, f)
+}
+
+
+func Map(mapping func(rune) rune, s string) string {
+	return strings.Map(mapping, s)
+}
+
+
+func Repeat(s string, count int) string {
+	return strings.Repeat(s, count)
+}
+
+
+
+func Replace(s, old, new string, n int) string {
+	return strings.Replace(s, old, new, n)
+}
+
+
+func Split(s, sep string) []string {
+	return strings.Split(s, sep)
+}
+
+
+func SplitAfter(s, sep string) []string {
+	return strings.SplitAfter(s, sep)
+}
+
+
+func SplitAfterN(s, sep string, n int) []string {
+	return strings.SplitAfterN(s, sep, n)
+}
+
+
+func SplitN(s, sep string, n int) []string {
+	return strings.SplitN(s, sep, n)
+}
+
+
+func Title(s string) string {
+	return strings.Title(s)
+}
+
+
+func ToLower(s string) string {
+	return strings.ToLower(s)
+}
+
+
+func ToLowerSpecial(_case unicode.SpecialCase, s string) string {
+	return strings.ToLowerSpecial(_case, s)
+}
+
+
+func ToTitle(s string) string {
+	return strings.ToTitle(s)
+}
+
+
+func ToTitleSpecial(_case unicode.SpecialCase, s string) string {
+	return strings.ToTitleSpecial(_case, s)
+}
+
+
+func ToUpper(s string) string {
+	return strings.ToUpper(s)
+}
+
+
+func ToUpperSpecial(_case unicode.SpecialCase, s string) string {
+	return strings.ToUpperSpecial(_case, s)
+}
+
+
+func Trim(s string, cutset string) string {
+	return strings.Trim(s, cutset)
+}
+
+
+func TrimFunc(s string, f func(rune) bool) string {
+	return strings.TrimFunc(s, f)
+}
+
+
+func TrimLeft(s string, cutset string) string {
+	return strings.TrimLeft(s, cutset)
+}
+
+
+func TrimLeftFunc(s string, f func(rune) bool) string {
+	return strings.TrimLeftFunc(s, f)
+}
+
+
+func TrimPrefix(s, prefix string) string {
+	return strings.TrimPrefix(s, prefix)
+}
+
+
+func TrimRight(s string, cutset string) string {
+	return strings.TrimRight(s, cutset)
+}
+
+
+func TrimRightFunc(s string, f func(rune) bool) string {
+	return strings.TrimRightFunc(s, f)
+}
+
+
+func TrimSpace(s string) string {
+	return strings.TrimSpace(s)
+}
+
+
+func TrimSuffix(s, suffix string) string {
+	return strings.TrimSuffix(s, suffix)
+}
+
+
+
+// STRCONV Manipulation Below.
+
+
+
+type NumError struct {
+        Func string // the failing function (ParseBool, ParseInt, ParseUint, ParseFloat)
+        Num  string // the input
+        Err  error  // the reason the conversion failed (ErrRange, ErrSyntax)
+}
+
+
+var ErrRange = errors.New("value out of range")
+var ErrSyntax = errors.New("invalid syntax")
+
+
+
+
+func AppendBool(b []byte, opt bool) []byte {
+	return strconv.AppendBool(b, opt)
+}
+
+
+
+func AppendFloat(b []byte, f float64, fmt byte, prec, bitSize int) []byte {
+	return strconv.AppendFloat(b, f, fmt, prec, bitSize)
+}
+
+
+
+func AppendInt(b []byte, i int64, base int) []byte {
+	return strconv.AppendInt(b, i, base)
+}
+
+
+
+func AppendQuoteRune(b []byte, r rune) []byte {
+	return strconv.AppendQuoteRune(b, r)
+}
+
+
+
+func AppendQuoteRuneToASCII(b []byte, r rune) []byte {
+	return strconv.AppendQuoteRuneToASCII(b, r)
+}
+
+
+
+func AppendQuoteRuneToGraphic(b []byte, r rune) []byte {
+	return strconv.AppendQuoteRuneToGraphic(b, r)
+}
+
+
+
+func AppendQuoteToASCII(b []byte, s string) []byte {
+	return strconv.AppendQuoteToASCII(b, s)
+}
+
+
+
+func AppendQuoteToGraphic(b []byte, s string) []byte {
+	return strconv.AppendQuoteToGraphic(b, s)
+}
+
+
+
+func AppendUint(b []byte, i uint64, base int) []byte {
+	return strconv.AppendUint(b, i, base)
+}
+
+
+
+func CanBackquote(s string) bool {
+	return strconv.CanBackquote(s)
+}
+
+
+
+func FormatBool(b bool) string {
+	return strconv.FormatBool(b)
+}
+
+
+
+func FormatFloat(f float64, fmt byte, prec, bitSize int) string {
+	return strconv.FormatFloat(f, fmt, prec, bitSize)
+}
+
+
+
+func FormatUint(i uint64, base int) string {
+	return strconv.FormatUint(i, base)
+}
+
+
+
+func IsGraphic(r rune) bool {
+	return strconv.IsGraphic(r)
+}
+
+
+
+func IsPrint(r rune) bool {
+	return strconv.IsPrint(r)
+}
+
+
+
+func ParseBool(s string) (value bool, err error) {
+	return strconv.ParseBool(s)
+}
+
+
+
+func ParseFloat(s string, bitSize int) (f float64, err error) {
+	return strconv.ParseFloat(s, bitSize)
+}
+
+
+
+func ParseInt(s string, base int, bitSize int) (i int64, err error) {
+	return strconv.ParseInt(s, base, bitSize)
+}
+
+
+
+func ParseUint(s string, base int, bitSize int) (n uint64, err error) {
+	return strconv.ParseUint(s, base, bitSize)
+}
+
+
+
+func Quote(s string) string {
+	return strconv.Quote(s)
+}
+
+
+
+func QuoteRune(r rune) string {
+	return strconv.QuoteRune(r)
+}
+
+
+
+func QuoteRuneToASCII(r rune) string {
+	return strconv.QuoteRuneToASCII(r)
+}
+
+
+
+func QuoteRuneToGraphic(r rune) string {
+	return strconv.QuoteRuneToGraphic(r)
+}
+
+
+
+func QuoteToASCII(s string) string {
+	return strconv.QuoteToASCII(s)
+}
+
+
+
+func QuoteToGraphic(s string) string {
+	return strconv.QuoteToGraphic(s)
+}
+
+
+
+func Unquote(s string) (t string, err error) {
+	return strconv.Unquote(s)
+}
+
+
+
+func UnquoteChar(s string, quote byte) (value rune, multibyte bool, tail string, err error) {
+	return strconv.UnquoteChar(s, quote)
+}
+
+
 
 
 func String(str int) (string, error) {
@@ -314,9 +757,211 @@ func Integer(str string) (int, error) {
 
 
 
-func Print(str interface{}) {
-	fmt.Println(str)
+
+
+
+
+// fmt Manipulation
+
+
+
+
+
+
+
+
+type Formatter interface {
+        Format(f State, c rune)
 }
+
+
+type GoStringer interface {
+        GoString() string
+}
+
+
+type ScanState interface {
+        // ReadRune reads the next rune (Unicode code point) from the input.
+        // If invoked during Scanln, Fscanln, or Sscanln, ReadRune() will
+        // return EOF after returning the first '\n' or when reading beyond
+        // the specified width.
+        ReadRune() (r rune, size int, err error)
+        // UnreadRune causes the next call to ReadRune to return the same rune.
+        UnreadRune() error
+        // SkipSpace skips space in the input. Newlines are treated appropriately
+        // for the operation being performed; see the package documentation
+        // for more information.
+        SkipSpace()
+        // Token skips space in the input if skipSpace is true, then returns the
+        // run of Unicode code points c satisfying f(c).  If f is nil,
+        // !unicode.IsSpace(c) is used; that is, the token will hold non-space
+        // characters.  Newlines are treated appropriately for the operation being
+        // performed; see the package documentation for more information.
+        // The returned slice points to shared data that may be overwritten
+        // by the next call to Token, a call to a Scan function using the ScanState
+        // as input, or when the calling Scan method returns.
+        Token(skipSpace bool, f func(rune) bool) (token []byte, err error)
+        // Width returns the value of the width option and whether it has been set.
+        // The unit is Unicode code points.
+        Width() (wid int, ok bool)
+        // Because ReadRune is implemented by the interface, Read should never be
+        // called by the scanning routines and a valid implementation of
+        // ScanState may choose always to return an error from Read.
+        Read(buf []byte) (n int, err error)
+}
+
+
+
+type Scanner interface {
+        Scan(state ScanState, verb rune) error
+}
+
+
+
+type State interface {
+        // Write is the function to call to emit formatted output to be printed.
+        Write(b []byte) (ret int, err error)
+        // Width returns the value of the width option and whether it has been set.
+        Width() (wid int, ok bool)
+        // Precision returns the value of the precision option and whether it has been set.
+        Precision() (prec int, ok bool)
+
+        // Flag reports whether the flag c, a character, has been set.
+        Flag(c int) bool
+}
+
+
+
+
+type Stringer interface {
+        String() string
+}
+
+
+
+
+
+func Errorf(format string, a ...interface{}) error {
+	return fmt.Errorf(format, a)
+}
+
+
+
+func Fprint(w io.Writer, a ...interface{}) (n int, err error) {
+	return fmt.Fprint(w, a)
+}
+
+
+
+func Fprintf(w io.Writer, format string, a ...interface{}) (n int, err error) {
+	return fmt.Fprintf(w, format, a)
+}
+
+
+
+func Fprintln(w io.Writer, a ...interface{}) (n int, err error) {
+	return fmt.Fprintln(w, a)
+}
+
+
+
+func Fscan(r io.Reader, a ...interface{}) (n int, err error) {
+	return fmt.Fscan(r, a)
+}
+
+
+
+func Fscanf(r io.Reader, format string, a ...interface{}) (n int, err error) {
+	return fmt.Fscanf(r, format, a)
+}
+
+
+
+func Fscanln(r io.Reader, a ...interface{}) (n int, err error) {
+	return fmt.Fscanln(r, a)
+}
+
+
+
+func Print(str interface{}) (n int, err error) {
+	return fmt.Println(str)
+}
+
+
+
+func Printf(format string, a ...interface{}) (int, error) {
+	return fmt.Printf(format, a)
+}
+
+
+
+func Println(a ...interface{}) (n int, err error) {
+	return fmt.Println(a)
+} 
+
+
+
+func Scan(a ...interface{}) (n int, err error) {
+	return fmt.Scan(a)
+}
+
+
+
+func Scanf(format string, a ...interface{}) (n int, err error) {
+	return fmt.Scanf(format, a)
+}
+
+
+
+func Scanln(a ...interface{}) (n int, err error) {
+	return fmt.Scanln(a)
+}
+
+
+
+func Sprint(a ...interface{}) string {
+	return fmt.Sprint(a)
+}
+
+
+
+func Sprintf(format string, a ...interface{}) string {
+	return fmt.Sprintf(format, a)
+}
+
+
+
+func Sprintln(a ...interface{}) string {
+	return fmt.Sprintln(a)
+}
+
+
+
+func Sscan(str string, a ...interface{}) (n int, err error) {
+	return fmt.Sscan(str, a)
+}
+
+
+
+func Sscanf(str string, format string, a ...interface{}) (n int, err error) {
+	return fmt.Sscanf(str, format, a)
+}
+
+
+
+
+func Sscanln(str string, a ...interface{}) (n int, err error) {
+	return fmt.Sscanln(str, a)
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -400,8 +1045,8 @@ return jso, nil
 
 
 func ReadFile(path string) ([]byte, error) {
-	tb, err := ioutil.ReadFile(path)
-	return tb, err
+	// tb, err := ioutil.ReadFile(path)
+	return ioutil.ReadFile(path)
 }
 
 
@@ -418,12 +1063,6 @@ func Random(min, max int) int {
 }
 
 
-
-
-
-func Split(str string, op string) []string {
-	return strings.Split(str, op)
-}
 
 
 
@@ -467,7 +1106,7 @@ func CountLines(path string) int {
 
 
 
-func copyFileContents(src, dst string) (err error) {
+func CopyFileContents(src, dst string) (err error) {
     in, err := os.Open(src)
     if err != nil {
         return
@@ -518,14 +1157,14 @@ func CopyFile(src, dst string) (err error) {
     if err = os.Link(src, dst); err == nil {
         return
     }
-    err = copyFileContents(src, dst)
+    err = CopyFileContents(src, dst)
     return
 }
 
 
 
 
-func ifExists(path string) bool {
+func IfExists(path string) bool {
 	if _, err := os.Stat(path); err != nil {
 		return false
 	} else {
@@ -533,19 +1172,6 @@ func ifExists(path string) bool {
 	}
 	return false
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -567,12 +1193,12 @@ func ifExists(path string) bool {
 
 func AutoRoleListen(s *discordgo.Session, m *discordgo.GuildMemberAdd) {
 	if AutoRoleName == "" {
-	//	Print("Gotools Error: function AutoRoleListen() You need to define what role you want me to add people to in your config.json file.")
+		Print("Gotools Error: function AutoRoleListen() You need to define what role you want me to add people to in your config.json file.")
 		return
 	}
 
 	if AutoRole == false {
-	//	Print("Gotools Error: function AutoRoleListen() You need to enable the Autorole system")
+		Print("Gotools Error: function AutoRoleListen() You need to enable the Autorole system")
 		return
 	}
 
@@ -625,15 +1251,15 @@ func SendFile(s *discordgo.Session, m *discordgo.MessageCreate, path string) err
 
 
 
-func PostRandomImage(cat string, s *discordgo.Session, m *discordgo.MessageCreate, path string) error {
+func PostRandomImage(s *discordgo.Session, m *discordgo.MessageCreate, path string) error {
 	img, _ := ioutil.ReadDir(path)
 	cnt := len(img)
 	rand := Random(1, cnt)
-	path = TrimSuffix(path, "/")
-	mk, err := ReadFile(path+"/"+img[rand].Name())
+	// Print(img[rand].Name())
+	mk, err := ReadFile(path + "/" + img[rand].Name())
 	if err == nil {
         tc := bytes.NewReader(mk)
-        s.ChannelFileSend(m.ChannelID, cat+".png", tc)
+        s.ChannelFileSend(m.ChannelID, path+".png", tc)
 	} else {
 		return err
 	}

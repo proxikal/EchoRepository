@@ -4,6 +4,7 @@ package main
 import (
 	"gotools"
 	"net/url"
+	"time"
 	"github.com/bwmarrin/discordgo"
 )
 
@@ -17,12 +18,19 @@ type config struct {
 	TwitterToken			string
 	TwitterTokenSecret		string
 	RiotKey					string
+	Greet 					bool
+	GreetMessage 			string
+	PmGreet 				bool
+	PmGreetMessage			string
+	AutoRole 				bool
+	AutoRoleName 			string
 }
 	var conf config
 	var Prefix string
 
 
-func main() {
+
+func loadConf() {
 	// grabbing config.json file
 	file, err := gto.ReadFile("config.json")
 	if err != nil {
@@ -31,8 +39,40 @@ func main() {
 	}
 	// loading the json from the file into the config structure.
 	gto.Unmarshal(file, &conf)
+}
 
 
+
+
+
+
+
+func Debug(s *discordgo.Session, channelID string) {
+	dbg:
+	loadConf()
+
+	gto.SendMessage(s, channelID, "**Gotools Debug System**")
+	time.Sleep(10 * time.Minute)
+
+	gto.SendMessage(s, channelID, "```AutoIt\n@gto.Autorole = \""+conf.AutoRole+"\"\n@gto.AutoRoleName = \""+conf.AutoRoleName+"\"\n@gto.Greet = \""+conf.Greet+"\"\n@gto.GreetMessage = \""+conf.GreetMessage+"\"\n@gto.PmGreet = \""+conf.PmGreet+"\"\n@gto.PmGreetMessage = \""+conf.PmGreetMessage+"\"```")
+	After(5 * time.Minute)
+	goto dbg
+}
+
+
+
+
+
+
+
+
+
+
+
+
+func main() {
+	// grabbing config.json file
+	loadConf()
 
 
 
@@ -62,13 +102,6 @@ func main() {
 	// you can change any command name in the function of the command.
 
 
-	// Early beta below. this may not work (still needs testing)
-	gto.Greet = true
-	gto.AutoRole = true
-	gto.AutoRoleName = "Members"
-	gto.GreetMessage = "Welcome {user} To my server!"
-	gto.PmGreet = true
-	gto.PmGreetMessage = "For more information be sure to check out my commands by typing "+Prefix + "help"
 
 
 
@@ -112,6 +145,13 @@ func onReady(s *discordgo.Session, event *discordgo.Ready) {
 // what happens when someone joins your server.
 // this function is registered above using Addhandler
 func GuildMemberAdd(s *discordgo.Session, m *discordgo.GuildMemberAdd) {
+
+	// let's parse a few keys.
+	gto.GreetMessage = gto.Replace(gto.GreetMessage, "{user}", "<@"+m.User.ID+">", -1)
+	gto.PmGreetMessage = gto.Replace(gto.PmGreetMessage, "{user}", "<@"+m.User.ID+">", -1)
+
+
+
 	gto.AutoRoleListen(s, m)
 	if gto.Greet == true {
 		gto.SendMessage(s, m.GuildID, gto.GreetMessage)
@@ -142,6 +182,17 @@ func GuildMemberRemove(s *discordgo.Session, m *discordgo.GuildMemberRemove) {
 // This function will trigger everytime someone sends a message (that your bot can see)
 // this function is registered above using Addhandler
 func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
+
+
+	loadConf()
+	// Early beta below. this may not work (still needs testing)
+	gto.Greet = conf.Greet
+	gto.AutoRole = conf.AutoRole
+	gto.AutoRoleName = conf.AutoRoleName
+	gto.GreetMessage = conf.GreetMessage
+	gto.PmGreet = conf.PmGreet
+	gto.PmGreetMessage = conf.PmGreetMessage
+
 
 
 
@@ -227,6 +278,87 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 			}
 		}
 	}
+
+
+
+
+
+	if gto.HasPrefix(m.Content, Prefix + "greet ") {
+		str := gto.Replace(m.Content, Prefix + "greet ", "", -1)
+
+		if str == "off" {
+			conf.Greet = false
+			j, err := gto.Marshal(conf)
+			if err != nil {
+				// json marshal error
+				return
+			}
+			gto.WriteFile("config.json", j, 0777)
+		}
+
+
+		if str != "" && str != "off" {
+			conf.Greet = true
+			conf.GreetMessage = str
+			j, err := gto.Marshal(conf)
+			if err != nil {
+				// json marshal error
+				return
+			}
+			gto.WriteFile("config.json", j, 0777)
+		}
+	}
+
+
+
+
+
+
+
+
+	if gto.HasPrefix(m.Content, Prefix + "pm ") {
+		str := gto.Replace(m.Content, Prefix + "pm ", "", -1)
+
+		if str == "off" {
+			conf.PmGreet = false
+			j, err := gto.Marshal(conf)
+			if err != nil {
+				// json marshal error
+				return
+			}
+			gto.WriteFile("config.json", j, 0777)
+		}
+
+
+		if str != "" && str != "off" {
+			conf.PmGreet = true
+			conf.PmGreetMessage = str
+			j, err := gto.Marshal(conf)
+			if err != nil {
+				// json marshal error
+				return
+			}
+			gto.WriteFile("config.json", j, 0777)
+		}
+	}
+
+
+
+
+
+
+
+	if gto.HasPrefix(m.Content, Prefix + "image") {
+		go gto.PostRandomImage(s, m, "System/images")
+	}
+
+
+
+
+
+
+
+
 
 
 

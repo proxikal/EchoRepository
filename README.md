@@ -1,8 +1,21 @@
 # Echo Repository!
   
 ## What is this?
-This is where all the pre-defined functions for Echo's A.R.S Will be held.
-  
+This is where all the **system** pre-defined functions for Echo's A.R.S Will be held.  
+What do you mean!!: You see the `messages.json` You can import that file in your a.r.s rules  
+for example you can add
+```php
+.auto &.pmtest={init}
+import "system/messages"
+call::PrivateMessage({rawid}, Testing the import PMS!);
+```
+Now there are two ways to use the above rule.  
+**1.** just type `.pmtest` and watch the magic happen.  
+**2.** Mention a user with the command to have echo pm them the message!  
+example: `.pmtest @User` When you use `import "system/anything"` it leads to this repo!  
+
+
+
 ## Predfined ..what??
 Yeah, that's right. **Pre-defined** functions. A new feature in the Echo 2.0 A.R.S System.  
 Allows users to easily store template rules.  
@@ -60,19 +73,14 @@ you can try it by adding an A.R.S Rule below (Change the channel id to yours!)
 import "proxikal/EchoRepository/messages"
 call::RedirectMessage(45645645678943123, Testing the imports redirect!);
 ```
-Awesome huh! Multiple imports will soon be available. but we will need to change the imports system  
+Or you can use the global name for this repo, which is easier to remember  
+`imports "system/messages"`  
+
+Awesome huh! Multiple imports will be available in time. but we will need to change the imports system  
 so don't get `too` comfortable with it just yet.  
   
-### Yes Imports!
-We will be allowing imports using Github, and following the rules.  
-We have not yet finalized the system for importing one or more packages from github.  
-However, the theory is for the user to be able to import a package in whatever rule they need.  
-Say I have a publicly hosted package named `messages` and in that package i define multiple functions  
-one for pming a message, the other for redirecting a message, and another for embedding a message.  
-You (The User) could do something like this.
-```php
-import msg "proxikal/EchoRepository/messages"
-call::msg.EmbedMessage(title, color, author, etc...)
-```
+### Add your own Imports!
+We will be accepting (Good full) packages to place in this repo `systems/...`  
+And we'll be adding our own as well! However our Imports system only allows for one import!  
 this could change, however we need to make sure if someone imports multiple packages  
 IF they have conflicting function names, we need to force the user to define a package prefix.

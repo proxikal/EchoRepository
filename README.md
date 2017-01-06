@@ -13,9 +13,7 @@ Now there are two ways to use the above rule.
 **1.** just type `.pmtest` and watch the magic happen.  
 **2.** Mention a user with the command to have echo pm them the message!  
 example: `.pmtest @User` When you use `import "system/anything"` it leads to this repo!  
-
-
-
+  
 ## Predfined ..what??
 Yeah, that's right. **Pre-defined** functions. A new feature in the Echo 2.0 A.R.S System.  
 Allows users to easily store template rules.  
@@ -74,7 +72,7 @@ import "proxikal/EchoRepository/messages"
 call::RedirectMessage(45645645678943123, Testing the imports redirect!);
 ```
 Or you can use the global name for this repo, which is easier to remember  
-`imports "system/messages"`  
+`import "system/messages"`  
 
 Awesome huh! Multiple imports will be available in time. but we will need to change the imports system  
 so don't get `too` comfortable with it just yet.  

@@ -50,3 +50,22 @@ call::HelloUser(1268555466456789, {params});
 ```
 Ok now when someone types `.hello What is up guys!` Their message will be redirected to the channel: `1268555466456789`  
 And since the `{redirect}` key requires the channel id. We need to make sure to place the channel ID not the name.
+  
+# What does this mean for Echo?
+Well this is going to open many doors. For people of all levels in A.R.S  
+For now let's focus on what we'll be doing called `Imports` you will see a folder in this repo  
+named `imports` and a file with the package name like: `package.json`  
+  
+### Yes Imports!
+We will be allowing imports using Github, and following the rules.  
+We have not yet finalized the system for importing one or more packages from github.  
+However, the theory is for the user to be able to import a package in whatever rule they need.  
+Say I have a publicly hosted package named `messages` and in that package i define multiple functions  
+one for pming a message, the other for redirecting a message, and another for embedding a message.  
+You (The User) could do something like this.
+```php
+import msg "proxikal/EchoRepository/messages"
+call::msg.EmbedMessage(title, color, author, etc...)
+```
+this could change, however we need to make sure if someone imports multiple packages  
+IF they have conflicting function names, we need to force the user to define a package prefix.

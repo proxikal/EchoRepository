@@ -53,8 +53,15 @@ And since the `{redirect}` key requires the channel id. We need to make sure to 
   
 # What does this mean for Echo?
 Well this is going to open many doors. For people of all levels in A.R.S  
-For now let's focus on what we'll be doing called `Imports` you will see a folder in this repo  
-named `imports` and a file with the package name like: `package.json`  
+For now let's focus on what we'll be doing called `Imports` you will see `messages.json` in this repo  
+you can try it by adding an A.R.S Rule below (Change the channel id to yours!)
+```php
+.auto &.test={init}
+import "proxikal/EchoRepository/messages"
+call::RedirectMessage(45645645678943123, Testing the imports redirect!);
+```
+Awesome huh! Multiple imports will soon be available. but we will need to change the imports system  
+so don't get `too` comfortable with it just yet.  
   
 ### Yes Imports!
 We will be allowing imports using Github, and following the rules.  

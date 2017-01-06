@@ -15,6 +15,16 @@
         "Message"
      ],
      "Content": "{redirect:{0}}{1}"
+  },
+  {
+    "Name": "EmbedImage",
+    "Params": [
+      "Title",
+      "ImageURL",
+      "Height",
+      "Width"
+    ],
+    "Content": "{embed:{title:{0}}{image|url:{1}}{image|width:{2}}{image|height:{3}}}"
   }
  ]
 }

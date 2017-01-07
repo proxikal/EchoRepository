@@ -34,13 +34,70 @@
     "Content": "{embed:{title:{0}}{image|url:{1}}{image|width:{2}}{image|height:{3}}}"
   },
   {
-     "Name": "EmbedServerInfo",
-     "Params": [
-          "TitleText",
-          "FooterIcon",
-          "FooterText"
-     ],
-     "Content": "{embed:\n    {title:{0}}\n    {type:rich}\n    {author|name:{owner|name}}\n    {author|icon:{owner|avatar}}\n    {author|url:{owner|avatar}}\n    {color:\n        {randlist:\n             #ff0000,#00ff00,#ffffff,#4286f4,\n             #f45642,#262525,#e2d626,#87e226,\n             #26e2c0,#2633e2,#8126e2\n        }\n    }\n    {thumb|url:{guild|icon}}\n    {desc:\n───────────────────────\n× ID:                     {guild|id}\n× Region:             {guild|region}\n× OwnerID:        {owner|id}\n× Discord Icon:  [Click to view Guild Icon]({guild|icon})\n× Members:       {membercount}\n× Channels:        {channelcount}\n× Roles:               {rolecount}\n───────────────────────\n    }\n    {footer|icon:{1}}\n    {footer|text:{2}}\n}"
+    "Name": "Delete",
+    "Params": [],
+    "Content": "{del}"
+  },
+  {
+    "Name": "TimedDelete",
+    "Params": [
+      "Time"
+    ],
+    "Content": "{del:{0}}"
+  },
+  {
+    "Name": "TimedDeleteWithMessage",
+    "Params": [
+      "Time",
+      "Message"
+    ],
+    "Content": "{del:{0}}{1}"
+  },
+  {
+    "Name": "TimedDeleteWithPM",
+    "Params": [
+      "Time",
+      "Message"
+    ],
+    "Content": "{del:{0}}{pm}{1}"
+  },
+  {
+    "Name": "DeleteWithRedirect",
+    "Params": [
+      "ChannelID",
+      "Message"
+    ],
+    "Content": "{del}{redirect:{0}}{1}"
+  },
+  {
+    "Name": "DeleteWithPM",
+    "Params": [
+      "Message"
+    ],
+    "Content": "{pm}{0}{del}"
+  },
+  {
+    "Name": "ActiveReactions",
+    "Params": [
+      "Emojis"
+    ],
+    "Content": "{reactme:{0}}"
+  },
+  {
+    "Name": "ReactUser",
+    "Params": [
+      "Emoji"
+    ],
+    "Content": "{react:{0}}"
+  },
+  {
+    "Name": "EmbedServerInfo",
+    "Params": [
+      "TitleText",
+      "FooterIcon",
+      "FooterText"
+    ],
+    "Content": "{embed:\n    {title:{0}}\n    {type:rich}\n    {author|name:{owner|name}}\n    {author|icon:{owner|avatar}}\n    {author|url:{owner|avatar}}\n    {color:\n        {randlist:\n             #ff0000,#00ff00,#ffffff,#4286f4,\n             #f45642,#262525,#e2d626,#87e226,\n             #26e2c0,#2633e2,#8126e2\n        }\n    }\n    {thumb|url:{guild|icon}}\n    {desc:\n───────────────────────\n× ID:                     {guild|id}\n× Region:             {guild|region}\n× OwnerID:        {owner|id}\n× Discord Icon:  [Click to view Guild Icon]({guild|icon})\n× Members:       {membercount}\n× Channels:        {channelcount}\n× Roles:               {rolecount}\n───────────────────────\n    }\n    {footer|icon:{1}}\n    {footer|text:{2}}\n}"
   }
  ]
 }

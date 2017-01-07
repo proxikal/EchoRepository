@@ -1,0 +1,11 @@
+{
+"Defines": [
+  {
+     "Name": "TestFunc",
+     "Params": [
+        "Message"
+     ],
+     "Content": "`{0}`"
+  }
+ ]
+}

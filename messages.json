@@ -98,6 +98,15 @@
       "FooterText"
     ],
     "Content": "{embed:\n    {title:{0}}\n    {type:rich}\n    {author|name:{owner|name}}\n    {author|icon:{owner|avatar}}\n    {author|url:{owner|avatar}}\n    {color:\n        {randlist:\n             #ff0000,#00ff00,#ffffff,#4286f4,\n             #f45642,#262525,#e2d626,#87e226,\n             #26e2c0,#2633e2,#8126e2\n        }\n    }\n    {thumb|url:{guild|icon}}\n    {desc:\n───────────────────────\n× ID:                     {guild|id}\n× Region:             {guild|region}\n× OwnerID:        {owner|id}\n× Discord Icon:  [Click to view Guild Icon]({guild|icon})\n× Members:       {membercount}\n× Channels:        {channelcount}\n× Roles:               {rolecount}\n───────────────────────\n    }\n    {footer|icon:{1}}\n    {footer|text:{2}}\n}"
-  }
+  },
+  {
+    "Name": "Announcement",
+    "Params": [
+      "Title",
+      "Color",
+      "Message"
+    ],
+    "Content": "{embed:\n    {title:{0}}\n    {type:rich}\n     {color:{1}}\n     {desc:{2}}\n}"
+   }
  ]
 }

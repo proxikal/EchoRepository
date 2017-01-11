@@ -102,11 +102,12 @@
   {
     "Name": "Announcement",
     "Params": [
+      "ChannelID",
       "Title",
       "Color",
       "Message"
     ],
-    "Content": "{embed:\n    {title:{0}}\n    {type:rich}\n     {color:{1}}\n     {desc:{2}}\n}"
+    "Content": "{redirect:{0}}{embed:\n    {title:{1}}\n    {type:rich}\n     {color:{2}}\n     {desc:{3}}\n}"
   }
  ]
 }

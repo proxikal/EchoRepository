@@ -1,5 +1,7 @@
 # Echo Repository!
   
+[View The WIKI For Help!!](https://github.com/proxikal/EchoRepository/wiki)  
+  
 ## What is this?
 This is where all the **system** pre-defined functions for Echo's A.R.S Will be held.  
 What do you mean!!: You see the `messages.json` You can import that file in your a.r.s rules  

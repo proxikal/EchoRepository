@@ -107,6 +107,6 @@
       "Message"
     ],
     "Content": "{embed:\n    {title:{0}}\n    {type:rich}\n     {color:{1}}\n     {desc:{2}}\n}"
-   }
+  }
  ]
 }

@@ -1,6 +1,7 @@
 # Echo Repository!
   
-[View The WIKI For Help!!](https://github.com/proxikal/EchoRepository/wiki)  
+Want to make a public package for Echo?  
+[View The WIKI to learn how!](https://github.com/proxikal/EchoRepository/wiki)  
   
 ## What is this?
 This is where all the **system** pre-defined functions for Echo's A.R.S Will be held.  

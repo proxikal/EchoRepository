@@ -47,7 +47,7 @@ using the `{0}` for ChannelID and `{1}` for Message.
 When you think about it, it's pretty simple. You can have an unlimited amount of parameters in your function  
 **However** You need to define those parameters with a `{num}` counterpart.  
 Meaning..If you have a function with 4 paramters `HelloUser(Param1, Params2, Params3, Params4)`  
-you will need to define them in the functions response as such `{0}=Param1`, `{1}=Params2`, `{2}=Params2`, `{3}=Params4`  
+you will need to define them in the functions response as such `{0}=Param1`, `{1}=Params2`, `{2}=Params3`, `{3}=Params4`  
   
 Alright now let's learn how to use that function in the A.R.S Rules.  
 Technically there are a few different ways to do this, let's try to cover them!  

@@ -10,7 +10,7 @@ for example you can add
 ```php
 .auto &.pmtest={init}
 import "system/messages"
-call::PrivateMessage({rawid}, Testing the import PMS!);
+call::UserMessageSend({rawid}, Testing the import PMS!);
 ```
 Now there are two ways to use the above rule.  
 **1.** just type `.pmtest` and watch the magic happen.  
